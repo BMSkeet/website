@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Summer 2026 Results | Blue Monday Skeet League</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap"><style>
+:root{--blue:#2a5ca8;--navy:#16345f;--orange:#d9601f;--ink:#14161a;--sand:#a89b82;--paper:#f6f5f2;--card:#fff;--line:#d9d6ce;--text:#23262b}
+@media(prefers-color-scheme:dark){:root{--paper:#14161a;--card:#1d2026;--line:#363b44;--text:#e8e6e1}}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{margin:0;font:17px/1.6 Barlow,system-ui,sans-serif;background:var(--paper);color:var(--text)}
+h1,h2,h3,.nav>li>a,.nav>li>button{font-family:"Barlow Condensed",Impact,sans-serif;letter-spacing:.02em}
+a{color:var(--blue)}@media(prefers-color-scheme:dark){a{color:#8db4ec}}
+.top{background:var(--ink);color:#fff;text-align:center;padding:20px 16px 18px;border-bottom:4px solid var(--orange)}
+.top img{width:170px;height:auto}
+.top p{margin:6px 0 0;color:#cfd3da;font-size:15px}
+nav{background:var(--blue);position:sticky;top:0;z-index:20}
+.nav{list-style:none;margin:0 auto;padding:0;display:flex;justify-content:center;flex-wrap:wrap;max-width:1100px}
+.nav>li{position:relative}
+.nav>li>a,.nav>li>button{display:block;background:none;border:0;color:#fff;font-size:21px;font-weight:600;padding:14px 22px;text-decoration:none;cursor:pointer}
+.nav>li>a:hover,.nav>li>button:hover,.nav>li:focus-within>a,.nav>li:focus-within>button{background:var(--navy)}
+.nav button::after{content:"";display:inline-block;margin-left:8px;border:5px solid transparent;border-top-color:currentColor;border-bottom:0;vertical-align:middle}
+.dd{display:none;position:absolute;left:0;top:100%;min-width:230px;background:var(--card);color:var(--text);border-top:3px solid var(--orange);box-shadow:0 10px 24px rgba(0,0,0,.25)}
+.nav>li:hover>.dd,.nav>li:focus-within>.dd{display:block}
+.dd a{display:block;padding:10px 18px;color:var(--text);text-decoration:none;border-bottom:1px solid var(--line)}
+.dd a:hover,.dd a:focus{background:var(--blue);color:#fff}
+.past{min-width:440px;max-height:70vh;overflow:auto;right:0;left:auto}
+.yr{display:flex;align-items:center;border-bottom:1px solid var(--line)}
+.yr b{font:700 20px "Barlow Condensed";width:64px;padding:0 0 0 18px;color:var(--orange)}
+.yr a{flex:1;border:0;padding:10px 6px}.yr.legacy a{padding:12px 18px;font-weight:600}
+.toggle{display:none}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px}
+.hero{position:relative;background:var(--orange) repeating-radial-gradient(circle at 82% 50%,transparent 0 46px,rgba(0,0,0,.85) 46px 50px);color:#fff;padding:90px 24px;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,22,26,.94) 60%,rgba(20,22,26,.35))}
+.hero div{position:relative;max-width:1100px;margin:auto}
+.hero h1{font-size:clamp(44px,8vw,86px);line-height:.95;margin:0 0 14px;text-transform:uppercase}
+.hero p{max-width:62ch;font-size:19px;margin:0 0 16px}.btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.btn{display:inline-block;background:var(--orange);color:#fff;padding:12px 26px;font:700 20px "Barlow Condensed";text-decoration:none;letter-spacing:.04em}
+.btn:hover{background:#b94d14}
+main{max-width:1100px;margin:auto;padding:20px 24px 60px}
+section{padding:44px 0;border-bottom:1px solid var(--line)}
+h2{font-size:40px;margin:0 0 14px;color:var(--blue);text-transform:uppercase}
+@media(prefers-color-scheme:dark){h2{color:#8db4ec}}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.box{background:var(--card);border-left:5px solid var(--orange);padding:18px 22px}
+.box h3{margin:0 0 6px;font-size:26px}
+.todo{background:#fff3cd;color:#5c4400;padding:2px 6px;font-size:14px}
+footer{background:var(--ink);color:#cfd3da;padding:28px 24px;text-align:center;font-size:15px;border-top:4px solid var(--blue)}
+@media(max-width:820px){
+.toggle{display:block;width:100%;background:var(--blue);color:#fff;border:0;font:700 22px "Barlow Condensed";padding:14px}
+.nav{display:none}.nav.open{display:block}
+.dd{position:static;display:block;box-shadow:none;max-height:none}.past{min-width:0}
+.nav>li>a,.nav>li>button{width:100%;text-align:left}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style><style>table{width:100%;border-collapse:collapse;background:var(--card)}th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:left}th{font:700 20px "Barlow Condensed";background:var(--blue);color:#fff}.wrap{overflow-x:auto}.nr{font:bold 32pt "Courier New",Courier,monospace;color:#d00000}.extra{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}td:not(:first-child),th:not(:first-child){text-align:center!important}.extra .btn{background:transparent;color:var(--blue);border:2px solid var(--blue);border-radius:6px;padding:10px 24px;font-size:12pt;transition:background .15s,color .15s}.extra .btn:hover,.extra .btn:focus-visible{background:var(--blue);color:#fff}</style><style>
+#weeks tr:nth-child(even){background:rgba(42,92,168,.08)}
+#weeks tr:hover{background:rgba(217,96,31,.14)}
+#weeks td{padding:8px 14px;vertical-align:middle}
+/* Link buttons: outlined rectangle style (also used by the .extra buttons below the table). Change border-radius for rounder corners */
+#weeks td a{display:inline-block;padding:5px 18px;border:2px solid var(--blue);border-radius:6px;background:transparent;color:var(--blue);text-decoration:none;font-weight:600;font-size:16px;line-height:1.3;transition:background .15s,color .15s}
+#weeks td a:hover,#weeks td a:focus-visible{background:var(--blue);color:#fff}
+@media(prefers-color-scheme:dark){.extra .btn{color:#8db4ec;border-color:#8db4ec}.extra .btn:hover,.extra .btn:focus-visible{background:#8db4ec;color:#14161a}#weeks td a{color:#8db4ec;border-color:#8db4ec}#weeks td a:hover,#weeks td a:focus-visible{background:#8db4ec;color:#14161a}}
+#weeks tr.future{opacity:.5}
+.extra.faded{opacity:.5}
+#weeks tr.latest{box-shadow:inset 6px 0 0 var(--orange);background:rgba(217,96,31,.12)}
+</style>
+<script>
+/* ===================== LEAGUE SETTINGS — EDIT HERE ===================== */
+/* File prefix for this league. Every results link on this page is built from it.
+   e.g. "summer2026" -> summer2026_individual_results_week1.html, summer2026_team_scores_week10.html,
+        summer2026_individual_final_rank.html, summer2026_most_improved.html            */
+var LEAGUE_PREFIX = "fall2026";
+
+/* Where this page lives, relative to the main folder.
+   Current league (in the main folder):   ""
+   Past league (past-leagues/summer2026/): "../../"                 */
+var SITE_ROOT = "";
+
+/* Name shown in the page title and heading. */
+var LEAGUE_TITLE = "Fall 2026";
+
+/* Latest week with results (1-10). That week is highlighted;
+   later weeks are shown faded. Set it to 10 once the season is over. */
+var LATEST_WEEK = 1;
+/* =================== END OF SETTINGS — don't edit below =================== */
+</script>
+</head><body><header class="top"><a href="index.html" data-root-href="index.html"><img data-root-src="bms_logo.webp" src="bms_logo.webp" width="400" height="400" alt="Blue Monday Skeet League"></a></header>
+<nav aria-label="Main"><button class="toggle" aria-expanded="false" onclick="var n=document.getElementById('nav');var o=n.classList.toggle('open');this.setAttribute('aria-expanded',o)">Menu</button>
+<ul class="nav" id="nav">
+<li><a href="index.html" data-root-href="index.html">Home</a></li>
+<li><a href="index.html#location" data-root-href="index.html#location">Location and hours</a></li>
+<li><a href="https://powerforms.docusign.net/89ea1b40-b0ff-4a93-98e5-c7e729f2b63a?env=na2&amp;acct=4413ff6c-07d8-4a15-bcd1-ea35455a9c9b&amp;accountId=4413ff6c-07d8-4a15-bcd1-ea35455a9c9b" target="_blank" rel="noopener">Waiver</a></li>
+<li><button type="button" aria-haspopup="true">Past Leagues</button><div class="dd past" id="past-leagues"></div></li>
+<li><button type="button" aria-haspopup="true">Resources</button><div class="dd"><a href="bylaws.pdf" data-root-href="bylaws.pdf">Bylaws</a><a href="nssa-rule-book.pdf" data-root-href="nssa-rule-book.pdf">NSSA Rule Book</a><a href="https://nssa-nsca.org/join-nssa-nsca/">Join NSSA-NSCA</a><a href="https://ctn.nssa-nsca.org/">Clay Target Nation</a></div></li>
+<li><a href="index.html#contact" data-root-href="index.html#contact">Contact</a></li></ul></nav><main><section style="border:0"><h2 id="league-heading"></h2><p>Individual and team results for each of the 10 weeks.</p><div class="wrap"><table><tr><th>Week</th><th colspan="2" style="text-align:center">Individual</th><th colspan="2" style="text-align:center;border-left:1px solid #fff">Team</th><th style="text-align:center;border-left:1px solid #fff">Score sheets</th></tr><tbody id="weeks"></tbody></table></div><div class="extra"><a class="btn" id="lnk-rank" href="#">Individual Final Rank</a><a class="btn" id="lnk-improved" href="#">Most Improved</a></div></section></main><footer>&copy; 2026 Blue Monday Skeet League</footer><script>
+/* Builds the page from the settings at the top. */
+(function(){
+  document.title=LEAGUE_TITLE+" Results | Blue Monday Skeet League";
+  document.getElementById("league-heading").textContent=LEAGUE_TITLE+" results";
+  var kinds=[["individual_results","Results"],["individual_scores","Scores"],
+             ["team_results","Results"],["team_scores","Scores"]];
+  var body=document.getElementById("weeks");
+  for(var w=1;w<=10;w++){
+    var tr=document.createElement("tr"), td=document.createElement("td"), b=document.createElement("b");
+    b.textContent="Week "+w; td.appendChild(b); tr.appendChild(td);
+    if(w===LATEST_WEEK){tr.className="latest";}
+    else if(w>LATEST_WEEK){tr.className="future";}
+    kinds.forEach(function(k){
+      var c=document.createElement("td"), a=document.createElement("a");
+      a.href=LEAGUE_PREFIX+"_"+k[0]+"_week"+w+".html"; a.textContent=k[1];
+      c.appendChild(a); tr.appendChild(c);
+    });
+    var sc=document.createElement("td"), sa=document.createElement("a");
+    sa.href=LEAGUE_PREFIX+"_score_sheets_week"+w+".html"; sa.textContent="View";
+    sc.appendChild(sa); tr.appendChild(sc);
+    body.appendChild(tr);
+  }
+  document.getElementById("lnk-rank").href=LEAGUE_PREFIX+"_individual_final_rank.html";
+  document.getElementById("lnk-improved").href=LEAGUE_PREFIX+"_most_improved.html";
+  /* Season standings are only final after week 10, so fade the buttons until then */
+  if(LATEST_WEEK<10){document.querySelector(".extra").classList.add("faded");}
+})();
+</script>
+<script>
+document.querySelectorAll('table td a, .extra a').forEach(function(a){
+  var url=a.href;
+  function ok(){location.href=url;}
+  function missing(){
+    /* page path relative to the main folder, e.g. past-leagues/summer2026/summer2026.html */
+    var rootPath=new URL(SITE_ROOT||"./",location.href).pathname;
+    var page=location.pathname.slice(rootPath.length);
+    location.href=SITE_ROOT+'results_not_in.html?back='+encodeURIComponent(page).replace(/%2F/g,'/')+'&title='+encodeURIComponent(LEAGUE_TITLE);
+  }
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    if(location.protocol==='file:'){
+      // Local test: fetch is blocked, so probe the file with a script tag
+      var s=document.createElement('script');
+      s.onload=function(){s.remove();ok();};
+      s.onerror=function(){s.remove();missing();};
+      s.src=url+(url.indexOf('?')<0?'?':'&')+'t='+Date.now();
+      document.head.appendChild(s);
+    }else{
+      fetch(url,{method:'HEAD',cache:'no-cache'}).then(function(r){r.ok?ok():missing();}).catch(ok);
+    }
+  });
+});
+window.addEventListener('error',function(e){if(e.target===window&&/week\d+\.html/.test(e.filename||''))e.preventDefault();},true);
+</script><script>document.write('<script src="'+SITE_ROOT+'site-settings.js"><\/script>');</script></body></html>
