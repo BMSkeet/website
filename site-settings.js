@@ -1,8 +1,8 @@
 /* ===================== SITE SETTINGS — EDIT HERE ===================== */
 
 /* Current league. Change this one line and both hero buttons update.
-   Summer 2026 button  ->  summer2026.html
-   Reserves button     ->  summer2026_reserves.html          */
+   Fall 2026 button    ->  fall2026.html
+   Reserves button     ->  fall2026_reserves.html          */
 var CURRENT_LEAGUE = "Fall 2026";
 
 /* Past Leagues menu. One line per year, newest first.
@@ -10,13 +10,12 @@ var CURRENT_LEAGUE = "Fall 2026";
    To add a year, copy a line and put it at the top.
    Each name links to past-leagues/<name><year>/<name><year>.html, e.g. past-leagues/spring2026/spring2026.html */
 var PAST_LEAGUES = [
-  //[2026, ["Spring", "Summer"]]
   [2026, ["Summer"]]
 ];
 
 /* Link shown at the bottom of the Past Leagues menu for the older leagues (2018-2025).
    Set to null to hide it. The file is looked up in the main folder. */
-var LEGACY_LINK = { label: "Legacy Blue Monday Skeet Homepage", href: "home.html" };
+var LEGACY_LINK = { label: "Legacy BMS Homepage", href: "https://www.bluemondayskeet.org/" };
 
 /* Announcements strip (shown under the banner on the home page).
    One line per announcement, newest first. Leave the list empty ([]) to hide the strip.
@@ -29,7 +28,6 @@ var LEGACY_LINK = { label: "Legacy Blue Monday Skeet Homepage", href: "home.html
 var SHOW_ANNOUNCEMENT_LABELS = false;
 
 var ANNOUNCEMENTS = [
-  { date: "", text: "League fees are due by the second week of competition", urgent: true },
   //{ date: "", text: "Sample announcement: edit or delete this line in site-settings.js.", urgent: false }
   // { date: "Nov 3", text: "Range closed Monday due to weather.", urgent: true },
 ];

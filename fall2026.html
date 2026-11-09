@@ -58,6 +58,19 @@ footer{background:var(--ink);color:#cfd3da;padding:28px 24px;text-align:center;f
 .extra.faded{opacity:.5}
 #weeks tr.latest{box-shadow:inset 6px 0 0 var(--orange);background:rgba(217,96,31,.12)}
 </style>
+<style>
+.ann{background:rgba(217,96,31,.22);border-bottom:1px solid var(--line);border-left:8px solid var(--orange);margin:0 0 24px}
+.ann[hidden]{display:none}
+.ann-inner{padding:16px 24px}
+.ann ul{margin:0;padding:0;list-style:none}
+.ann li{font-size:1.15em;font-weight:600;color:var(--text)}
+.ann li+li{margin-top:8px}
+.ann.urgent{background:#c00000;border-left-color:#7a0000;border-bottom-color:#7a0000}
+.ann.urgent li{color:#fff}
+.ann li.urgent{font-size:1.3em;font-weight:700}
+.ann li.urgent::before{content:"\26A0\FE0E";display:inline-flex;align-items:center;justify-content:center;width:1.07em;height:1.07em;box-sizing:border-box;padding-bottom:.14em;line-height:1;border-radius:50%;background:#ffd23f;color:#000;font-size:1.20em;margin-right:.6em;vertical-align:middle}
+.ann li.urgent strong{text-transform:uppercase}
+</style>
 <script>
 /* ===================== LEAGUE SETTINGS — EDIT HERE ===================== */
 /* File prefix for this league. Every results link on this page is built from it.
@@ -76,6 +89,15 @@ var LEAGUE_TITLE = "Fall 2026";
 /* Latest week with results (1-10). That week is highlighted;
    later weeks are shown faded. Set it to 10 once the season is over. */
 var LATEST_WEEK = 1;
+
+/* Announcements for THIS league page (separate from the home page list in site-settings.js).
+   One line per announcement, newest first. Leave the list empty ([]) to hide the strip.
+   date:   optional, e.g. "Nov 3" (use "" for none)
+   urgent: true makes that line large and bold with a warning icon, and turns the strip solid red */
+var LEAGUE_ANNOUNCEMENTS = [
+  { date: "", text: "League fees are due by the second week of competition", urgent: true }
+  // { date: "Nov 3", text: "Range closed Monday due to weather.", urgent: true },
+];
 /* =================== END OF SETTINGS — don't edit below =================== */
 </script>
 </head><body><header class="top"><a href="index.html" data-root-href="index.html"><img data-root-src="bms_logo.webp" src="bms_logo.webp" width="400" height="400" alt="Blue Monday Skeet League"></a></header>
@@ -86,7 +108,7 @@ var LATEST_WEEK = 1;
 <li><a href="https://powerforms.docusign.net/89ea1b40-b0ff-4a93-98e5-c7e729f2b63a?env=na2&amp;acct=4413ff6c-07d8-4a15-bcd1-ea35455a9c9b&amp;accountId=4413ff6c-07d8-4a15-bcd1-ea35455a9c9b" target="_blank" rel="noopener">Waiver</a></li>
 <li><button type="button" aria-haspopup="true">Past Leagues</button><div class="dd past" id="past-leagues"></div></li>
 <li><button type="button" aria-haspopup="true">Resources</button><div class="dd"><a href="bylaws.pdf" data-root-href="bylaws.pdf">Bylaws</a><a href="nssa-rule-book.pdf" data-root-href="nssa-rule-book.pdf">NSSA Rule Book</a><a href="https://nssa-nsca.org/join-nssa-nsca/">Join NSSA-NSCA</a><a href="https://ctn.nssa-nsca.org/">Clay Target Nation</a></div></li>
-<li><a href="index.html#contact" data-root-href="index.html#contact">Contact</a></li></ul></nav><main><section style="border:0"><h2 id="league-heading"></h2><p>Individual and team results for each of the 10 weeks.</p><div class="wrap"><table><tr><th>Week</th><th colspan="2" style="text-align:center">Individual</th><th colspan="2" style="text-align:center;border-left:1px solid #fff">Team</th><th style="text-align:center;border-left:1px solid #fff">Score sheets</th></tr><tbody id="weeks"></tbody></table></div><div class="extra"><a class="btn" id="lnk-rank" href="#">Individual Final Rank</a><a class="btn" id="lnk-improved" href="#">Most Improved</a></div></section></main><footer>&copy; 2026 Blue Monday Skeet League</footer><script>
+<li><a href="index.html#contact" data-root-href="index.html#contact">Contact</a></li></ul></nav><main><section style="border:0"><h2 id="league-heading"></h2><div class="ann" id="league-announcements" hidden></div><div class="wrap"><table><tr><th>Week</th><th colspan="2" style="text-align:center">Individual</th><th colspan="2" style="text-align:center;border-left:1px solid #fff">Team</th><th style="text-align:center;border-left:1px solid #fff">Score sheets</th></tr><tbody id="weeks"></tbody></table></div><div class="extra"><a class="btn" id="lnk-rank" href="#">Individual Final Rank</a><a class="btn" id="lnk-improved" href="#">Most Improved</a></div></section></main><footer>&copy; 2026 Blue Monday Skeet League</footer><script>
 /* Builds the page from the settings at the top. */
 (function(){
   document.title=LEAGUE_TITLE+" Results | Blue Monday Skeet League";
@@ -108,6 +130,22 @@ var LATEST_WEEK = 1;
     sa.href=LEAGUE_PREFIX+"_score_sheets_week"+w+".html"; sa.textContent="View";
     sc.appendChild(sa); tr.appendChild(sc);
     body.appendChild(tr);
+  }
+  /* This league's announcements strip */
+  var abox=document.getElementById("league-announcements");
+  if(abox && LEAGUE_ANNOUNCEMENTS.length){
+    var ainner=document.createElement("div"), alist=document.createElement("ul"), aurgent=false;
+    ainner.className="ann-inner";
+    LEAGUE_ANNOUNCEMENTS.forEach(function(item){
+      var li=document.createElement("li");
+      if(item.date){var d=document.createElement("strong"); d.textContent=item.date+": "; li.appendChild(d);}
+      li.appendChild(document.createTextNode(item.text));
+      if(item.urgent){aurgent=true; li.className="urgent";}
+      alist.appendChild(li);
+    });
+    ainner.appendChild(alist); abox.appendChild(ainner);
+    if(aurgent){abox.className+=" urgent";}
+    abox.hidden=false;
   }
   document.getElementById("lnk-rank").href=LEAGUE_PREFIX+"_individual_final_rank.html";
   document.getElementById("lnk-improved").href=LEAGUE_PREFIX+"_most_improved.html";
